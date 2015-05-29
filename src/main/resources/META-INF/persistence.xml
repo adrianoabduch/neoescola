@@ -1,0 +1,35 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+    version="2.0">
+
+ 	<persistence-unit name="entidades">
+
+		<!-- provedor/implementacao do JPA -->
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+		<!-- entidade mapeada -->
+		<class>br.com.projetoescola.banco.entidades.Contrato</class>
+ 		<class>br.com.projetoescola.banco.entidades.Escola</class>
+ 		<class>br.com.projetoescola.banco.entidades.Usuario</class>
+ 		<class>br.com.projetoescola.banco.entidades.Aluno</class>
+
+ 		<properties>
+		<!-- dados da conexao -->
+		<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+		<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/neoescoladb" />
+		<property name="javax.persistence.jdbc.user" value="neoescola" />
+		<property name="javax.persistence.jdbc.password" value="123456" />
+		
+ 		<!--  propriedades do hibernate -->
+		<property name="hibernate.show_sql" value="true" />
+		<property name="hibernate.format_sql" value="true" />
+		<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+	
+		<!--  atualiza o banco, gera as tabelas se for preciso -->
+		<property name="hibernate.hbm2ddl.auto" value="false" />
+  
+		</properties>
+	</persistence-unit>
+</persistence>
