@@ -5,6 +5,9 @@ import java.util.Collection;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.com.caelum.vraptor.InterceptionException;
 import br.com.caelum.vraptor.Intercepts;
 import br.com.caelum.vraptor.Result;
@@ -17,6 +20,8 @@ import br.com.nce.neoescola.tipo.TipoPerfil;
 
 @Intercepts
 public class LoginInterceptor implements Interceptor {
+	
+	private static final Logger logger = LoggerFactory.getLogger(Interceptor.class);
 	
 	private UsuarioLogado usuarioLogado;
 	private Result result;
@@ -46,11 +51,15 @@ public class LoginInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ControllerMethod method) {
+		logger.info("Entrou no accepts");
+		
 		return !(method.getMethod().isAnnotationPresent(Publico.class) ||
 	               method.getController().getType().isAnnotationPresent(Publico.class));
 	}
 
 	public void intercept(InterceptorStack stack, ControllerMethod method, Object instance) throws InterceptionException {
+		
+		logger.info("Entrou no intercep");
 		Permissao methodPermission = method.getMethod().getAnnotation(Permissao.class);
 	    Permissao controllerPermission = method.getController().getType().getAnnotation(Permissao.class);
 	    

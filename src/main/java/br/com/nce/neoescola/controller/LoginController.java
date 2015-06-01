@@ -2,6 +2,9 @@ package br.com.nce.neoescola.controller;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
@@ -17,6 +20,8 @@ import br.com.nce.neoescola.seguranca.UsuarioLogado;
 
 @Controller
 public class LoginController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	private UsuarioDAO usuarioDAO;
 	private UsuarioLogado usuarioLogado;
@@ -63,6 +68,8 @@ public class LoginController {
 	@Publico
 	@Get("/sistema")
 	public void formulario () {
+		logger.info("Entrou no formulário, deveria chamar o jsp");
+		
 	}
 	
 	@Get("/logout")
