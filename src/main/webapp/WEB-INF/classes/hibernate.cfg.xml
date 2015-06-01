@@ -15,7 +15,7 @@
 	 
 	 <!-- online -->
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.url">jdbc:postgres://qdtfasarzvusav:WNdvy3eNy2gq3Sut55U2chRBuZ@ec2-54-235-134-167.compute-1.amazonaws.com:5432/dqqvrk6stbqdu</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-235-134-167.compute-1.amazonaws.com:5432/dqqvrk6stbqdu</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		
 		<property name="hibernate.connection.username">qdtfasarzvusav</property>
