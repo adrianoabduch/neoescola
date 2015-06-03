@@ -69,7 +69,6 @@ public class LoginController {
 	@Get("/sistema")
 	public void formulario () {
 		logger.info("Entrou no formulário, deveria chamar o jsp");
-		
 	}
 	
 	@Get("/logout")
