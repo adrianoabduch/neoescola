@@ -80,10 +80,15 @@
 		
 		<!-- POSTGRES -->
 		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.3-603.jdbc3</version>
+		</dependency>
+		<!-- <dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1201-jdbc41</version>
-		</dependency>
+		</dependency> -->
 		
 	</dependencies>
 
