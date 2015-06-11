@@ -30,7 +30,7 @@ public class IndexController {
 		this.result = result;
 	}
 	
-	@Path("/teste")
+	@Path("/")
 	public void index() {
 		result.include("variable", "VRaptor4!");
 	}

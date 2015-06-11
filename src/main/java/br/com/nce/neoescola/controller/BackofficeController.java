@@ -1,35 +1,54 @@
-package br.com.nce.neoescola.testes;
+package br.com.nce.neoescola.controller;
 
-import org.hibernate.Session;
+import javax.inject.Inject;
 
+import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Get;
 import br.com.nce.neoescola.banco.dao.AlunoDAO;
-import br.com.nce.neoescola.banco.dao.AlunoDAOImpl;
 import br.com.nce.neoescola.banco.dao.ColaboradorDAO;
-import br.com.nce.neoescola.banco.dao.ColaboradorDAOImpl;
 import br.com.nce.neoescola.banco.dao.ContratoDAO;
-import br.com.nce.neoescola.banco.dao.ContratoDAOImpl;
 import br.com.nce.neoescola.banco.dao.EscolaDAO;
-import br.com.nce.neoescola.banco.dao.EscolaDAOImpl;
 import br.com.nce.neoescola.banco.dao.UsuarioDAO;
-import br.com.nce.neoescola.banco.dao.UsuarioDAOImpl;
 import br.com.nce.neoescola.banco.entidades.Aluno;
 import br.com.nce.neoescola.banco.entidades.Colaborador;
 import br.com.nce.neoescola.banco.entidades.Contrato;
 import br.com.nce.neoescola.banco.entidades.Escola;
 import br.com.nce.neoescola.banco.entidades.Usuario;
+import br.com.nce.neoescola.seguranca.Publico;
 import br.com.nce.neoescola.tipo.TipoPerfil;
 
-public class GeraContratoTeste {
-
-	public static void main(String[] args) {
+@Controller
+public class BackofficeController {
+	
+	private ContratoDAO contratoDAO;
+	private EscolaDAO escolaDAO;
+	private UsuarioDAO usuarioDAO;
+	private ColaboradorDAO colaboradorDAO;
+	private AlunoDAO alunoDAO;
+	
+	/**
+	 * @deprecated CDI eyes only
+	 */
+	public BackofficeController() {
+		this(null, null, null, null, null);
+	}
+	
+	@Inject
+	public BackofficeController(ContratoDAO contratoDAO, EscolaDAO escolaDAO,
+				UsuarioDAO usuarioDAO, ColaboradorDAO colaboradorDAO, AlunoDAO alunoDAO) {
+		this.contratoDAO = contratoDAO;
+		this.escolaDAO = escolaDAO;
+		this.usuarioDAO = usuarioDAO;
+		this.colaboradorDAO = colaboradorDAO;
+		this.alunoDAO = alunoDAO;
+	}
+	
+	@Publico
+	@Get("/backoffice/geraContratoTeste/{senha}")
+	public void geraContratoTeste(Long senha) {
 		
-		//Abre a session e gera os DAOS
-		Session s = CriadorDeSessionParaTeste.abreSession();
-		ContratoDAO contratoDAO = new ContratoDAOImpl(s);
-		EscolaDAO escolaDAO = new EscolaDAOImpl(s);
-		UsuarioDAO usuarioDAO = new UsuarioDAOImpl(s);
-		ColaboradorDAO colaboradorDAO = new ColaboradorDAOImpl(s, null);
-		AlunoDAO alunoDAO = new AlunoDAOImpl(s, null);
+		if(senha != 2805)
+			return;
 		
 		//Cria o contrato
 		Contrato c = new Contrato();
@@ -41,7 +60,7 @@ public class GeraContratoTeste {
 		c.setNumeroAlunosContratado(200);
 		c.setEmail("contato@colegioabcdario.com.br");
 		
-		//Cria a escola
+		//Cria a escola, por enquanto está manual.
 		Escola e = new Escola();
 		e.setNomeFantasia(c.getNomeFantasia());
 		e.setRazaoSocial(c.getRazaoSocial());
@@ -54,7 +73,8 @@ public class GeraContratoTeste {
 		aluno.setPrimeiroNome("Triss");
 		aluno.setSobrenome("Merigold de Maribor");
 		Aluno aluno2 = new Aluno();
-		aluno.setPrimeiroNome("Harleen");
+		aluno2.setPrimeiroNome("Harleen");
+		aluno2.setSobrenome("Francis Quinzel");
 		
 		Usuario u = new Usuario();
 		u.setEmail("ciri@colegioabcdario.com.br");
@@ -63,27 +83,27 @@ public class GeraContratoTeste {
 		
 		
 //		Salva o contrato
-		contratoDAO._salvar(c);
+		contratoDAO.salvar(c);
 		
 //		Adiciona o contrato na escola e salva a escola
 		e.setContrato(c);
-		escolaDAO._salvar(e);
+		escolaDAO.salvar(e);
 		
 //		Adiciona a escola no usuário administrativo e salva o usuário
 		u.setEscola(e);
-		usuarioDAO._salvar(u);
+		usuarioDAO.salvar(u);
 		
 //		Adiciona o usuário administrativo e a escola
 //		no colaborador que contratou e salva o colaborador 
 		colaborador.setEscola(e);
 		colaborador.setUsuario(u);
-		colaboradorDAO._salvar(colaborador);
+		colaboradorDAO.salvar(colaborador);
 		
 //		Adiciona a escola no aluno e salva o aluno
 		aluno.setEscola(e);
-		alunoDAO._salvar(aluno);
+		alunoDAO.salvar(aluno);
 		aluno2.setEscola(e);
-		alunoDAO._salvar(aluno2);
+		alunoDAO.salvar(aluno2);
 	}
-	
+
 }

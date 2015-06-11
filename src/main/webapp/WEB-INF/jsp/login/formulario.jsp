@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	<ul>
+		<c:forEach items="${errors}" var="error">
+	  		<li>${error.category} - ${error.message} - ${error.severity}</li>
+		</c:forEach>
+	</ul>
+
 	<h2>Login</h2>
 	
 	<form action="<c:url value="/autentica" />" method="POST">

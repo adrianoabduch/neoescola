@@ -1,4 +1,4 @@
-package br.com.nce.neoescola.seguranca;
+package br.com.nce.neoescola.interceptors;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,12 +16,15 @@ import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.view.Results;
 import br.com.nce.neoescola.controller.LoginController;
+import br.com.nce.neoescola.seguranca.Permissao;
+import br.com.nce.neoescola.seguranca.Publico;
+import br.com.nce.neoescola.seguranca.UsuarioLogado;
 import br.com.nce.neoescola.tipo.TipoPerfil;
 
 @Intercepts
 public class LoginInterceptor implements Interceptor {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Interceptor.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginInterceptor.class);
 	
 	private UsuarioLogado usuarioLogado;
 	private Result result;
@@ -51,15 +54,11 @@ public class LoginInterceptor implements Interceptor {
 	}
 
 	public boolean accepts(ControllerMethod method) {
-		logger.info("Entrou no accepts");
-		
 		return !(method.getMethod().isAnnotationPresent(Publico.class) ||
 	               method.getController().getType().isAnnotationPresent(Publico.class));
 	}
 
 	public void intercept(InterceptorStack stack, ControllerMethod method, Object instance) throws InterceptionException {
-		
-		logger.info("Entrou no intercep");
 		Permissao methodPermission = method.getMethod().getAnnotation(Permissao.class);
 	    Permissao controllerPermission = method.getController().getType().getAnnotation(Permissao.class);
 	    

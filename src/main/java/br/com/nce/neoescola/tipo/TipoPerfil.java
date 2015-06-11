@@ -3,7 +3,7 @@ package br.com.nce.neoescola.tipo;
 public enum TipoPerfil implements Tipo {
 	ALUNO,
 	DOCENTE,
-	ADMINISTADOR,
+	ADMINISTRADOR,
 	SECRETARIA_TODOS,
 	SECRETARIA_CADASTROS,
 	SECRETARIA_BIBLIOTECA,
