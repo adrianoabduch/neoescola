@@ -24,6 +24,7 @@
 		<mapping class="br.com.nce.neoescola.banco.entidades.Usuario" />
 		<mapping class="br.com.nce.neoescola.banco.entidades.Colaborador" />
 		<mapping class="br.com.nce.neoescola.banco.entidades.Aluno" />
+		<mapping class="br.com.nce.neoescola.banco.entidades.Unidade" />
 		
 		
 		

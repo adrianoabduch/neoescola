@@ -1,7 +1,5 @@
 package br.com.nce.neoescola.banco.dao;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.hibernate.Criteria;
@@ -16,13 +14,6 @@ public class AlunoDAOImpl extends GenericEntidadeEscolaDAOImpl<Aluno> implements
 	@Inject
 	public AlunoDAOImpl(Session session, UsuarioLogado usuarioLogado) {
 		super(Aluno.class, session, usuarioLogado);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Aluno> buscaTodos() {
-		Criteria c = getSession().createCriteria(Aluno.class);
-		
-		return c.list();
 	}
 	
 	public Aluno buscaPorUsuarioId(Long usuarioId) {

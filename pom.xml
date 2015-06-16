@@ -77,6 +77,26 @@
 			<version>1.7.5</version>
 		</dependency>
 		
+		<!-- VRAPTOR PLUGINS -->
+		<!-- VRAPTOR BRUTAUTH -->
+		<dependency>
+			<groupId>br.com.caelum.vraptor</groupId>
+			<artifactId>vraptor-brutauth</artifactId>
+			<version>4.0.4</version>
+		</dependency>
+		
+		<!-- STELLA -->
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-core</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>br.com.caelum.stella</groupId>
+			<artifactId>caelum-stella-boleto</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		
 		
 		<!-- POSTGRES -->
 		<dependency>

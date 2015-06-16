@@ -5,6 +5,9 @@
 <title>VRaptor Blank Project</title>
 </head>
 <body>
-	It works!! ${variable} ${linkTo[IndexController].testa}
+	
+	<img src="data:image/png;base64,${variable}" />
+	
+	
 </body>
 </html>

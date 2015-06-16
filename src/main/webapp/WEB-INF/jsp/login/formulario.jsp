@@ -21,6 +21,10 @@
 		Senha: <input type="password" name="usuario.senha" /> <br />
 		<input type="submit" value="Entrar" />
 	</form>
+	
+	<c:if test="${error ne null}">
+	  	${error}
+	</c:if>
 
 </body>
 </html>

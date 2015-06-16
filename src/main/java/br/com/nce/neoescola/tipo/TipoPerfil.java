@@ -1,15 +1,11 @@
 package br.com.nce.neoescola.tipo;
 
 public enum TipoPerfil implements Tipo {
+	BACKOFFICE,
 	ALUNO,
 	DOCENTE,
 	ADMINISTRADOR,
-	SECRETARIA_TODOS,
-	SECRETARIA_CADASTROS,
-	SECRETARIA_BIBLIOTECA,
-	SECRETARIA_FINANCEIRO,
-	SECRETARIA_ALMOXARIFADO,
-	SECRETARIA_RELATORIOS;
+	SECRETARIA;
 	
 	public String getDescricao() {
 		return TipoUtils.getDescricao(this);

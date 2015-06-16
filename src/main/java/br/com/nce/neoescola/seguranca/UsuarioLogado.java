@@ -6,6 +6,7 @@ import javax.enterprise.context.SessionScoped;
 
 import br.com.nce.neoescola.banco.entidades.Aluno;
 import br.com.nce.neoescola.banco.entidades.Colaborador;
+import br.com.nce.neoescola.banco.entidades.Escola;
 import br.com.nce.neoescola.banco.entidades.Usuario;
 
 @SessionScoped
@@ -14,9 +15,11 @@ public class UsuarioLogado implements Serializable {
 	private Usuario usuario;
 	private Aluno aluno;
 	private Colaborador colaborador;
+	private Escola escola;
 	
 	public void efetuaLogin(Usuario usuario) {
 		this.usuario = usuario;
+		this.escola = usuario.getEscola();
 	}
 
 	public Usuario getUsuario() {
@@ -47,8 +50,19 @@ public class UsuarioLogado implements Serializable {
 		this.usuario = usuario;
 	}
 	
+	public Escola getEscola() {
+		return escola;
+	}
+
+	public void setEscola(Escola escola) {
+		this.escola = escola;
+	}
 	
 	//-- Fim dos getters & setters
+
+	public boolean isLogado() {
+		return usuario != null;
+	}
 	
 	public boolean isAluno() {
 		return aluno != null;

@@ -1,5 +1,7 @@
 package br.com.nce.neoescola.banco.dao;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
@@ -78,6 +80,15 @@ public class GenericEntidadeEscolaDAOImpl<T extends BaseEntidadeEscola> implemen
 		c.add(Restrictions.eq("escola.id", usuarioLogado.getUsuario().getEscola().getId()));
 		
 		return c;
+	}
+	
+	/**
+	 * Busca todas as entidades limitadas por escola;
+	 * @return List<T>
+	 */
+	public List<T> buscaTodos() {
+		Criteria c = createCriteria();
+		return c.list();
 	}
 	
 }

@@ -2,6 +2,7 @@ package br.com.nce.neoescola.controller;
 
 import javax.inject.Inject;
 
+import br.com.caelum.brutauth.auth.annotations.Public;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.nce.neoescola.banco.dao.AlunoDAO;
@@ -14,8 +15,6 @@ import br.com.nce.neoescola.banco.entidades.Colaborador;
 import br.com.nce.neoescola.banco.entidades.Contrato;
 import br.com.nce.neoescola.banco.entidades.Escola;
 import br.com.nce.neoescola.banco.entidades.Usuario;
-import br.com.nce.neoescola.seguranca.Publico;
-import br.com.nce.neoescola.tipo.TipoPerfil;
 
 @Controller
 public class BackofficeController {
@@ -30,7 +29,6 @@ public class BackofficeController {
 	 * @deprecated CDI eyes only
 	 */
 	public BackofficeController() {
-		this(null, null, null, null, null);
 	}
 	
 	@Inject
@@ -43,7 +41,7 @@ public class BackofficeController {
 		this.alunoDAO = alunoDAO;
 	}
 	
-	@Publico
+	@Public
 	@Get("/backoffice/geraContratoTeste/{senha}")
 	public void geraContratoTeste(Long senha) {
 		
@@ -60,7 +58,7 @@ public class BackofficeController {
 		c.setNumeroAlunosContratado(200);
 		c.setEmail("contato@colegioabcdario.com.br");
 		
-		//Cria a escola, por enquanto está manual.
+		//Cria a escola
 		Escola e = new Escola();
 		e.setNomeFantasia(c.getNomeFantasia());
 		e.setRazaoSocial(c.getRazaoSocial());
@@ -79,7 +77,6 @@ public class BackofficeController {
 		Usuario u = new Usuario();
 		u.setEmail("ciri@colegioabcdario.com.br");
 		u.setSenha("123");
-		u.setPerfil(TipoPerfil.ADMINISTRADOR);
 		
 		
 //		Salva o contrato

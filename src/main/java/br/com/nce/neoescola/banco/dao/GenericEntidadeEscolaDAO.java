@@ -1,5 +1,7 @@
 package br.com.nce.neoescola.banco.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 
@@ -35,6 +37,10 @@ public interface GenericEntidadeEscolaDAO<T> {
 	 */
 	public Criteria createCriteria();
 	
-	
+	/**
+	 * Busca todas as entidades limitadas por escola;
+	 * @return List<T>
+	 */
+	public List<T> buscaTodos();
 	
 }

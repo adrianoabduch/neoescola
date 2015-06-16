@@ -59,7 +59,6 @@ public class GeraContratoTeste {
 		Usuario u = new Usuario();
 		u.setEmail("ciri@colegioabcdario.com.br");
 		u.setSenha("123");
-		u.setPerfil(TipoPerfil.ADMINISTRADOR);
 		
 		
 //		Salva o contrato

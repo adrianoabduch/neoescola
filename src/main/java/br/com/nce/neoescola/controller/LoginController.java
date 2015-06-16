@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.caelum.brutauth.auth.annotations.Public;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
@@ -12,14 +13,12 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Severity;
 import br.com.caelum.vraptor.validator.SimpleMessage;
 import br.com.caelum.vraptor.validator.Validator;
-import br.com.caelum.vraptor.view.Results;
 import br.com.nce.neoescola.banco.dao.AlunoDAO;
 import br.com.nce.neoescola.banco.dao.ColaboradorDAO;
 import br.com.nce.neoescola.banco.dao.UsuarioDAO;
 import br.com.nce.neoescola.banco.entidades.Aluno;
 import br.com.nce.neoescola.banco.entidades.Colaborador;
 import br.com.nce.neoescola.banco.entidades.Usuario;
-import br.com.nce.neoescola.seguranca.Publico;
 import br.com.nce.neoescola.seguranca.UsuarioLogado;
 
 @Controller
@@ -39,7 +38,6 @@ public class LoginController {
 	 * @deprecated CDI eyes only
 	 */
 	public LoginController() {
-		this(null, null, null, null, null, null);
 	}
 
 	@Inject
@@ -53,14 +51,9 @@ public class LoginController {
 		this.validator = validator;
 	}
 	
-	@Publico
+	@Public
 	@Post("/autentica")
-	public void autentica(Usuario usuario) {
-		
-//		validator.ensure(SenhaUtils.validarSenha(usuario.getSenha()), 
-//			new SimpleMessage("senha", "Senha inválida.", Severity.ERROR, "teste"));
-//			
-//		validator.onErrorForwardTo(this).formulario();
+	public void autentica(Usuario usuario) throws Exception {
 		
 		Usuario autenticado = usuarioDAO.buscaUsuarioPorEmailESenha(usuario);
 		if(autenticado != null) {
@@ -81,7 +74,7 @@ public class LoginController {
 		}
 	}
 	
-	@Publico
+	@Public
 	@Get("/login")
 	public void formulario () {
 	}

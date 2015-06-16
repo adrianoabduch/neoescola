@@ -2,11 +2,16 @@ package br.com.nce.neoescola.banco.entidades;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Aluno extends BaseEntidadeEscola {
 
+	@ManyToOne
+	@JoinColumn(name = "unidadeid")
+	private Unidade unidade;
+	
 	@OneToOne
 	@JoinColumn(name = "usuarioid")
 	private Usuario usuario;
@@ -15,8 +20,14 @@ public class Aluno extends BaseEntidadeEscola {
 	
 	private String sobrenome;
 	
-	
-	
+	public Unidade getUnidade() {
+		return unidade;
+	}
+
+	public void setUnidade(Unidade unidade) {
+		this.unidade = unidade;
+	}
+
 	public String getPrimeiroNome() {
 		return primeiroNome;
 	}
