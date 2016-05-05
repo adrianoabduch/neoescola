@@ -8,7 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 public class CriadorDeSessionParaTeste {
 	
 	protected static Session abreSession() {
-		Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+		Configuration configuration = new Configuration().configure("development/hibernate.cfg.xml");
 		StandardServiceRegistryBuilder serviceRegistryBuilder = new StandardServiceRegistryBuilder();
 	    serviceRegistryBuilder.applySettings(configuration.getProperties());
 	    ServiceRegistry serviceRegistry = serviceRegistryBuilder.build();

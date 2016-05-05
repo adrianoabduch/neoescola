@@ -8,8 +8,8 @@
 		<property name="hibernate.connection.url">jdbc:postgresql://ec2-54-235-134-167.compute-1.amazonaws.com:5432/dqqvrk6stbqdu</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
 		
-		<property name="hibernate.connection.username">qdtfasarzvusav</property>
-		<property name="hibernate.connection.password">WNdvy3eNy2gq3Sut55U2chRBuZ</property>
+		<property name="hibernate.connection.username">neoescola</property>
+		<property name="hibernate.connection.password">123456</property>
 		
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		
