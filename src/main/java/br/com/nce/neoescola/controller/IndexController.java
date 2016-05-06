@@ -70,12 +70,13 @@ public class IndexController {
         //Quem emite o boleto
         Beneficiario beneficiario = Beneficiario.novoBeneficiario()  
                 .comNomeBeneficiario("Colégio Vaz S/C LTDA")  
-                .comAgencia("8137").comDigitoAgencia("")  
+                .comAgencia("8137").comDigitoAgencia("1")  
                 .comCodigoBeneficiario("1234")  
                 .comDigitoCodigoBeneficiario("4321")  
                 .comNumeroConvenio("5678")  
                 .comCarteira("109")  
                 .comEndereco(enderecoBeneficiario)
+                .comDigitoNossoNumero("1234")
                 .comNossoNumero("9000206");  
 
         Endereco enderecoPagador = Endereco.novoEndereco()
@@ -108,7 +109,6 @@ public class IndexController {
 		
 		GeradorDeBoleto g = new GeradorDeBoleto(boleto);
 		String x = Base64.encodeBytes(g.geraPNG());
-		
 		
 		return x;
 	}
